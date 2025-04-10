@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://be5lp5btmfclr"]
+
+[ext_resource type="Script" uid="uid://d0ybgx6i1brck" path="res://dissapear_block.gd" id="1_pu5u5"]
+[ext_resource type="Texture2D" uid="uid://dax2xvw3ijbuv" path="res://sprites/project dissapear block1.png" id="2_ikkm2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkl1b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1yu1u"]
+
+[node name="Dissapear block" type="Area2D"]
+script = ExtResource("1_pu5u5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_nkl1b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_1yu1u")
+
+[node name="Dissapear block" type="Sprite2D" parent="."]
+texture = ExtResource("2_ikkm2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

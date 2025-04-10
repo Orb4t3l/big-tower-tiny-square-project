@@ -1,0 +1,123 @@
+[gd_scene load_steps=12 format=3 uid="uid://c8aujtqq1pvlf"]
+
+[ext_resource type="Script" uid="uid://br1froxqh3g6o" path="res://lava.gd" id="1_83bcq"]
+[ext_resource type="Texture2D" uid="uid://d2e7lvex1kc4l" path="res://sprites/project lava1.png" id="2_nrv3k"]
+[ext_resource type="Texture2D" uid="uid://dv1ng4k3k31ow" path="res://sprites/project lava2.png" id="3_5xhc3"]
+[ext_resource type="Texture2D" uid="uid://bxpg1jjubh3rx" path="res://sprites/project lava3.png" id="4_qsgew"]
+[ext_resource type="Texture2D" uid="uid://5oc3lxt2ign4" path="res://sprites/project lava4.png" id="5_cytvy"]
+[ext_resource type="Texture2D" uid="uid://c8vm60wmsi0aq" path="res://sprites/project lava5.png" id="6_pvnna"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpq46"]
+size = Vector2(29.5, 20.4897)
+
+[sub_resource type="Animation" id="Animation_s05lw"]
+resource_name = "Lava"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(29.5, 28), Vector2(29.5, 24), Vector2(29.5, 21), Vector2(29.5, 18), Vector2(29.5, 14), Vector2(29.5, 14), Vector2(29.5, 18), Vector2(29.5, 22), Vector2(29.5, 24), Vector2(29.5, 28), Vector2(29.5, 28)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 4), Vector2(1, 6), Vector2(1, 7.5), Vector2(1, 9), Vector2(1, 11), Vector2(1, 11), Vector2(1, 9), Vector2(1, 7), Vector2(1, 6), Vector2(1, 4), Vector2(1, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_3i204"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7eyx3"]
+_data = {
+&"Lava": SubResource("Animation_s05lw"),
+&"RESET": SubResource("Animation_3i204")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_upwr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nrv3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5xhc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qsgew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cytvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pvnna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pvnna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cytvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qsgew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5xhc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nrv3k")
+}],
+"loop": true,
+"name": &"Lava",
+"speed": 1.0
+}]
+
+[node name="Lava" type="Area2D"]
+script = ExtResource("1_83bcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 7.75515)
+shape = SubResource("RectangleShape2D_dpq46")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7eyx3")
+}
+autoplay = "Lava"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, 3)
+sprite_frames = SubResource("SpriteFrames_upwr5")
+animation = &"Lava"
+autoplay = "Lava"
+frame = 6
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
