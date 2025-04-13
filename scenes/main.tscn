@@ -66,5 +66,5 @@ position = Vector2(194, 560)
 
 [connection signal="body_entered" from="Checkpoints/Checkpoint" to="Checkpoints/Checkpoint" method="_on_body_entered"]
 [connection signal="body_entered" from="Lava/Lava" to="Lava/Lava" method="_on_body_entered"]
-[connection signal="body_entered" from="Lava/@Area2D@24366" to="Lava/@Area2D@24366" method="_on_body_entered"]
-[connection signal="body_entered" from="Lava/@Area2D@24367" to="Lava/@Area2D@24367" method="_on_body_entered"]
+[connection signal="body_entered" from="Lava/@Area2D@21955" to="Lava/@Area2D@21955" method="_on_body_entered"]
+[connection signal="body_entered" from="Lava/@Area2D@21956" to="Lava/@Area2D@21956" method="_on_body_entered"]
